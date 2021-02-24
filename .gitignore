@@ -1,0 +1,12 @@
+source_data/*.csv
+.local/*
+.rstudio/*
+Rplots.pdf*
+.config/*
+.gitconfig/*
+.bash_history
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+MarioKart.Rmd
