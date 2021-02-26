@@ -15,4 +15,4 @@ gliders.csv \
 tires.csv
 
 ## Content
-This project contains R code for Mario Kart charcter analysis. 
+This project contains R code for Mario Kart character analysis. 
