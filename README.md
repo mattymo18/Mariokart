@@ -34,7 +34,7 @@ Matt Johnson
 #### Data
 Data is taken from Kaggle and can be found [here](https://www.kaggle.com/barelydedicated/mariokart8)
 
-Data will need to be in source_data Directory with the follow names: \
+Data will need to be in source_data Directory with the following names: \
 bodies.csv \
 characters.csv \
 gliders.csv \
