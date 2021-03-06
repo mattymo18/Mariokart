@@ -10,3 +10,6 @@ Rplots.pdf*
 .RData
 .Ruserdata
 MarioKart.Rmd
+scratch_work.Rmd
+derived_data/*.csv
+derived_graphics/*.png
