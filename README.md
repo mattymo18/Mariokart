@@ -32,20 +32,19 @@ Lindsey Braxton \
 Matt Johnson
 
 #### Data
-Data is taken from Kaggle and can be found [here](https://www.kaggle.com/barelydedicated/mariokart8)
+Data is taken from Ark42 on GameFAQs and can be found [here](https://gamefaqs.gamespot.com/wii/942008-mario-kart-wii/faqs/52716)
 
 Data will need to be in source_data Directory with the following names: \
-bodies.csv \
+karts.csv \
 characters.csv \
-gliders.csv \
-tires.csv
+bikes.csv 
+
 
 #### Content
-This project contains R code for Mario Kart 8 character analysis. 
+This project contains R code for Mario Kart Wii character analysis. 
 
 ***
 
 Preliminary Plots
 -----------------
 
-![](readme_graphics/Character.Speed.plot.png)

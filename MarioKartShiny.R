@@ -8,16 +8,18 @@ library(plotly)
 ##port <- as.numeric(args[[1]])
 
 
-karts <- read.csv('source_data/bodies.csv')
+karts <- read.csv('source_data/karts.csv')
+bike <- read.csv('source_data/bikes.csv')
 characters <- read.csv('source_data/characters.csv')
 
 Choices.c <- sort(characters$Character)
-Choices.k <- sort(karts$Vehicle)
+Choices.k <- sort(karts$Kart)
+Choices.b <- sort(bikes$Bike)
 
 
 ##### UI #####
 ui <- fluidPage(theme = shinytheme("slate"),
-              navbarPage("Mario Kart 8 Evaluation",
+              navbarPage("Mario Kart Wii",
                          tabPanel("Characters",
                                   sidebarLayout(
                                     sidebarPanel(
@@ -32,8 +34,17 @@ ui <- fluidPage(theme = shinytheme("slate"),
                sidebarPanel(
                  selectInput("Kart.Selector", h3("Kart Select"),
                              choices = Choices.k, 
-                             selected = "B Dasher")),
+                             selected = "Blue Flacon")),
                mainPanel(plotlyOutput("Kart.Plot"))
+      )
+    ),
+    tabPanel("Bikes",
+             sidebarLayout(
+               sidebarPanel(
+                 selectInput("Bike.Selector", h3("Bike Select"),
+                             choices = Choices.k, 
+                             selected = "Bit Bike")),
+               mainPanel(plotlyOutput("Bike.Plot"))
       )
     )
   )
