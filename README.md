@@ -48,3 +48,4 @@ This project contains R code for Mario Kart Wii character analysis.
 Preliminary Plots
 -----------------
 
+![](readme_graphics/Character.Speed.plot.png)
