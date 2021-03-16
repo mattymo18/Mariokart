@@ -9,7 +9,7 @@ library(plotly)
 
 
 karts <- read.csv('source_data/karts.csv')
-bike <- read.csv('source_data/bikes.csv')
+bikes <- read.csv('source_data/bikes.csv')
 characters <- read.csv('source_data/characters.csv')
 
 Choices.c <- sort(characters$Character)
@@ -34,12 +34,17 @@ ui <- fluidPage(theme = shinytheme("slate"),
                         tabPanel("Karts",
                                sidebarLayout(
                                  sidebarPanel(
-                                   selectInput("Kart.Selector.Type", h3("Select Kart Type"),
+                                   radioButtons("Kart.Selector.Type1", h3("Select Kart Type 1"),
                                                choices = c("Light", "Medium", "Heavy"), 
-                                               selected = "Light"), 
+                                               selected = "Light", 
+                                               inline = T), 
                                    selectInput("Kart.Selector1", h3("Kart Select 1"),
                                                choices = Choices.k, 
                                                selected = "Blue Flacon"),
+                                   radioButtons("Kart.Selector.Type2", h3("Select Kart Type 2"),
+                                                choices = c("Light", "Medium", "Heavy"), 
+                                                selected = "Light", 
+                                                inline = T),
                                    selectInput("Kart.Selector2", h3("Kart Select 2"),
                                                choices = "")),
                                  mainPanel(plotlyOutput("Kart.Plot"))
@@ -48,12 +53,17 @@ ui <- fluidPage(theme = shinytheme("slate"),
                         tabPanel("Bikes",
                                  sidebarLayout(
                                    sidebarPanel(
-                                     selectInput("Bike.Selector.Type", h3("Select Bike Type"),
+                                     radioButtons("Bike.Selector.Type1", h3("Select Bike Type 1"),
                                                  choices = c("Light", "Medium", "Heavy"), 
-                                                 selected = "Light"),
+                                                 selected = "Light", 
+                                                 inline = T),
                                      selectInput("Bike.Selector1", h3("Bike Select 1"),
                                                  choices = Choices.b, 
                                                  selected = "Bit Bike"),
+                                     radioButtons("Bike.Selector.Type2", h3("Select Bike Type 2"),
+                                                  choices = c("Light", "Medium", "Heavy"), 
+                                                  selected = "Light", 
+                                                  inline = T),
                                      selectInput("Bike.Selector2", h3("Bike Select 2"),
                                                  choices = "")),
                                    mainPanel(plotlyOutput("Bike.Plot"))
@@ -65,31 +75,49 @@ ui <- fluidPage(theme = shinytheme("slate"),
 ##### Server #####
 server <- function(input, output, session) {
 #### Selector reactivity #####
+  
+  ##### Characters #####
   observe({
     xvar = input$Character.Selector1
     updateSelectInput(session, "Character.Selector2", choices = Choices.c[-which(Choices.c == input$Character.Selector1)])
   }) 
   
   observe({
-    xvar = input$Kart.Selector.Type
-    updateSelectInput(session, "Kart.Selector1", choices = karts$Kart[which(karts$Class == input$Kart.Selector.Type)])
+    xvar = input$Kart.Selector.Type1
+    updateSelectInput(session, "Kart.Selector1", choices = karts$Kart[which(karts$Class == input$Kart.Selector.Type1)])
   })   
   
+  ##### Karts #####
   observe({
+    xvar = input$Kart.Selector.Type2
+    updateSelectInput(session, "Kart.Selector2", choices = karts$Kart[which(karts$Class == input$Kart.Selector.Type2)])
+  })
+  
+  observe({
+    if (input$Kart.Selector.Type1 == input$Kart.Selector.Type2) {
     xvar = input$Kart.Selector1
-    updateSelectInput(session, "Kart.Selector2", choices = karts$Kart[which(karts$Class == input$Kart.Selector.Type &
+    updateSelectInput(session, "Kart.Selector2", choices = karts$Kart[which(karts$Class == input$Kart.Selector.Type1 &
                                                                               karts$Kart != input$Kart.Selector1)])
+    }
+  }) 
+  
+  ##### Bikes #####
+  observe({
+    xvar = input$Bike.Selector.Type1
+    updateSelectInput(session, "Bike.Selector1", choices = bikes$Bike[which(bikes$Class == input$Bike.Selector.Type1)])
   }) 
   
   observe({
-    xvar = input$Bike.Selector.Type
-    updateSelectInput(session, "Bike.Selector1", choices = bikes$Bike[which(bikes$Class == input$Bike.Selector.Type)])
+    xvar = input$Bike.Selector.Type2
+    updateSelectInput(session, "Bike.Selector2", choices = bikes$Bike[which(bikes$Class == input$Bike.Selector.Type2)])
   }) 
   
   observe({
+    if (input$Bike.Selector.Type1 == input$Bike.Selector.Type2) {
     xvar = input$Bike.Selector1
-    updateSelectInput(session, "Bike.Selector2", choices = bikes$Bike[which(bikes$Class == input$Bike.Selector.Type &
+    updateSelectInput(session, "Bike.Selector2", choices = bikes$Bike[which(bikes$Class == input$Bike.Selector.Type1 &
                                                                               bikes$Bike != input$Bike.Selector1)])
+    }
   }) 
   
 #### Plots ####
