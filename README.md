@@ -41,7 +41,7 @@ bikes.csv
 
 
 #### Content
-This project contains R code for Mario Kart Wii character analysis. 
+This project contains R code for Mario Kart Wii character analysis and an R-Shiny app for character, kart, and bike comparison
 
 ***
 
