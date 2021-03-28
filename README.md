@@ -17,7 +17,7 @@ To run the application use:
 
     > docker run -v `pwd`:/home/rstudio -e PASSWORD=mypass -p 8787:8787 -p 8788:8788 -t mariokart_env 
 
-Username:rstudio \
+Username: rstudio \
 Password: mypass
     
 Then in the rstudio server on port 8787 go to the terminal and use:
