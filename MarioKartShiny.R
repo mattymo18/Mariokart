@@ -3,8 +3,8 @@ library(shiny)
 library(shinythemes)
 library(tidyverse)
 
-##args <- commandArgs(trailingOnly = T)
-##port <- as.numeric(args[[1]])
+args <- commandArgs(trailingOnly = T)
+port <- as.numeric(args[[1]])
 
 
 karts <- read.csv('source_data/karts.csv')
@@ -179,8 +179,8 @@ server <- function(input, output, session) {
   })
 }
 
-shinyApp(ui = ui, server = server)
-
+shinyApp(ui = ui, server = server, options = list(port=port,
+                                                  host="0.0.0.0"))
 
 
 

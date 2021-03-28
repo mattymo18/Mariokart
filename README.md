@@ -12,11 +12,23 @@ This Docker container is based on rocker/verse. To run rstudio server:
       
 Then connect to the machine on port 8787.
 
+#### Rshiny Application
+To run the application use:
+
+    > docker run -v `pwd`:/home/rstudio -e PASSWORD=mypass -p 8787:8787 -p 8788:8788 -t mariokart_env 
+
+Username:rstudio \
+Password: mypass
+    
+Then in the rstudio server on port 8787 go to the terminal and use:
+
+    > PORT=8788 make mariokart_eval_tool
+
 #### Make
 Use Makefile as recipe book for building artifacts found in derived directories. 
 
 ##### Example:
-In local project directory, to build artifact named Raleigh.Clean.csv:
+In local project directory, to build artifact named Example.csv:
 
     > make derived_data/Example.csv
     
